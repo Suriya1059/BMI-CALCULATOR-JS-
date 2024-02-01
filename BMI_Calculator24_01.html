@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" name="myform">
+        <h1>BML Calculator</h1>
+        <label for="weight"> Weight</label>
+        <input type="number" name="" id="weight" placeholder="Enter the weight"><br>
+        <label for="hight">Hight(cm)</label>
+        <input type="number" name="" id="hight" placeholder="Enter the hight"><br>
+        <button onclick="calculate()">Calculate</button>
+        <button onclick="clearFields()">Clear</button>
+        <div id="demo"></div>
+    </form>
+    <script>
+        function calculate() {
+            // debugger
+            var weightbmi = document.getElementById("weight").value;
+            var heightbmi = document.getElementById("hight").value;
+            var weight1 = parseFloat(weightbmi);
+            var height1 = parseFloat(heightbmi);
+            if (weightbmi <= 0 || heightbmi <= 0 ||isNaN(weightbmi)||isNaN(heightbmi)) {
+                alert("Enter the Weight And height");
+            }
+            var bmi = weight1 / (height1 * height1);
+            var bmicategory = getbmicategory(bmi);
+            var values = document.getElementById("demo");
+            values.innerHTML = bmi.toFixed() + " <br>" + bmicategory;
+            //Clear Input fileds
+            weightbmi.value = "";
+            heightbmi.value = "";
+            // values.className=bmicategory.toLowerCase();
+        }
+        function getbmicategory(bmi) {
+            if (bmi < 18.5) {
+                return "Underweight";
+            } else if (bmi <= 40) {
+                return "Healthy";
+            } else if (bmi > 50) {
+                return "Overweight";
+            } else {
+                return "Obesity";
+            }
+        }
+        function clearFields() {
+            document.getElementById("weight").value = "";
+            document.getElementById("hight").value = "";
+            document.getElementById("demo").innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>
